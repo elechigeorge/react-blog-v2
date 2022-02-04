@@ -41,4 +41,4 @@ router.post('/', upload.single('images'), (req: Request, res: Response) => {
   res.send(`/${req.file && req.file.path}`)
 })
 
-module.exports = router
+export default router;

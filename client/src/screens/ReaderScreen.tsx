@@ -1,88 +1,81 @@
-import { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-export const posts = [
-    {
-        _id: 1,
-        name: "Article One: How to kill everyone",
-        body: "this is the body of this article",
-        reactions: {
-            likes: "20",
-            dislikes: "10"
-        },
-        comments: {
-            counts: "2",
-            comments: [
-                {
-                    user: "adeola kolabo",
-                    comment: "jeola article ever"
-                }
-            ]
-        }
-    },
-
-    {
-        _id: 2,
-        name: "Article Two: How to Survive 2020",
-        body: "this is the body of this article",
-        reactions: {
-            likes: "200",
-            dislikes: "4"
-        },
-        comments: {
-            counts: "3",
-            comments: [
-                {
-                    user: "adeola kolabo",
-                    comment: "jeola article ever"
-                },
-                {
-                    user: "godson hunla",
-                    comment: "jeola article ever"
-                },
-                {
-                    user: "adeola kolabo",
-                    comment: "jeola article ever"
-                }
-            ]
-        }
-    }
-]
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleArticles } from "../actions/post";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { RootState } from '../store';
+import { Image, Row, Col, Button } from "react-bootstrap";
+import CommentScreen from "./CommentScreen";
 
 
-
-interface ReaderProps {
-    match?: any,
+// interface definitions 
+interface ArticleStateProps {
+    loading?: any,
+    error?: any,
+    article?: any
 }
 
-const ReaderScreen: FC<ReaderProps> = ({match}) => {
-    const [posted, setposted] = useState({})
+const ReaderScreen = () => {
     const params = useParams();
 
+    const dispatch = useDispatch();
 
+    // grab articles from the server : on page load
     useEffect(() => {
-        let toFilterArticle = posts.filter(post => post._id === Number(params.id))
+        // dispathes the get articles action: to grab posts from the server
+        dispatch(getSingleArticles(params.id));
+    }, [0])
 
-        setposted(toFilterArticle)
+    // select the articles from the state: 
+    const StateSingleArticles = useSelector((state: RootState) => state.getSingleArticle);
+    const { loading, error, article }: ArticleStateProps = StateSingleArticles;
 
-    }, [posts])
-
-    console.log(posted)
 
     return (
-
         <div className="container">
-            <div className="header-content">
-                
-            </div>
+            {error && <Message variant="error" children={error} />}
+            {loading && <Loader />}
 
-            <div className="body-content">
+            {article && (
+                <div className="wrapper mt-5 mb-5">
+                     <div>
+                         <h3>{article.title}</h3>
+                    </div>
 
-            </div>
+                    <div className="header-content">
+                          <Image src={`https://www.qualityformationsblog.co.uk/wp-content/uploads/2019/07/what-are-company-formation-documents.jpg`} alt={article.images} fluid />
+                    </div>
 
-            <div className="footer-content">
+                    <div className="body-content">
+                        <p className="display-1 mt-2 mb-5 "> {article.body} </p>
+                    </div>
 
-            </div>
+                    <div className="footer-content mt-5">
+                        <p className="lead">DID YOU ENJOY YOUR READ ? </p>
+
+                        <div>
+                            <Row>
+                                <Col>
+                                    <div className="d-grid">
+                                        <Button className="btn-lg btn-warning text-light m-2 disabled">{article.reactions.likes.length} Reactions</Button>
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <div className="d-grid">
+                                        <Button className="btn-lg btn-dark text-light m-2"><i className="fas fa-glass-cheers"></i> Applaud the writer</Button>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+
+                    
+                    <CommentScreen id={article._id} />
+                </div>
+
+            )}
+           
         </div>
     )
 }

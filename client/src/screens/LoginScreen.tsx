@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-// import { login } from '../actions/UserAction';
+import { login } from '../actions/user';
+import { RootState } from '../store';
+import { useNavigate } from "react-router-dom";
+
+
 
 const LoginScreen = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
 
-    // const userLogin = useSelector((state) => state.userLogin)
-    // const { loading, error, userInfo } = userLogin;
+    const userLogin:any = useSelector((state: RootState) => state.userLogin)
+    const { loading, error, userInfo } = userLogin;
 
 
-    // const redirect = location.search ? location.search.split('=')[1] : '/'
+    const submitHandler = (e:any) => {
 
-    // const submitHandler = (e) => {
+        e.preventDefault();
 
-    //     e.preventDefault();
+        dispatch(login(email, password))
 
-    //     dispatch(login(username, password))
+    }
 
-    // }
+        useEffect(() => {
+            if (userInfo){
+                return navigate("/auth");
+            }
+        },[userInfo]);
 
-    // if (userInfo) {
-    //     return <Redirect to="/verify" />
-    // }
-
-    
 
     return (
         <div style={{
@@ -41,21 +45,20 @@ const LoginScreen = () => {
             alignItems: 'center',
             height: '90vh'
         }} >
-
-
+        
             <FormContainer>
                 <h1>Login to your account</h1>
-                {/* {error && <Message variant='danger'>{error}</Message>}
-                {loading && <Loader />} */}
-                <Form >
+                {error && <Message variant='danger'>{error}</Message>}
+                {loading && <Loader />}
+                <Form onSubmit={submitHandler}>
                 
                     <Form.Group controlId='email'>
                         <Form.Label>Email Address</Form.Label>
                         <Form.Control
-                            type='name'
-                            placeholder='Enter username'
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            type='email'
+                            placeholder='Enter email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 

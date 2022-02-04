@@ -1,62 +1,38 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import ArticleItemScreen from "./ArticleItemScreen";
+import { useDispatch, useSelector } from "react-redux";
+import { getArticle } from "../actions/post";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { RootState } from '../store';
 
+
+
+// interface definitions 
+interface ArticleStateProps {
+    loading: any,
+    error: any,
+    articles: any
+}
 
 const ArticleScreen = () => {
+    const dispatch = useDispatch();
 
-    const posts = [
-        {
-            _id: 1,
-            name: "Article One: How to kill everyone",
-            body: "this is the body of this article",
-            reactions: {
-                likes: "20",
-                dislikes: "10"
-            },
-            comments: {
-                counts: "2",
-                comments: [
-                    {
-                        user: "adeola kolabo",
-                        comment: "jeola article ever"
-                    }
-                ]
-            }
-        },
+    // grab articles from the server : on page load
+    useEffect(() => {
+        // dispathes the get articles action: to grab posts from the server
+        dispatch(getArticle());
+    }, [0])
 
-        {
-            _id: 2,
-            name: "Article Two: How to Survive 2020",
-            body: "this is the body of this article",
-            reactions: {
-                likes: "200",
-                dislikes: "4"
-            },
-            comments: {
-                counts: "3",
-                comments: [
-                    {
-                        user: "adeola kolabo",
-                        comment: "jeola article ever"
-                    },
-                    {
-                        user: "godson hunla",
-                        comment: "jeola article ever"
-                    },
-                    {
-                        user: "adeola kolabo",
-                        comment: "jeola article ever"
-                    }
-                ]
-            }
-        }
-    ]
+    // select the articles from the state: 
+    const StateArticles = useSelector((state: RootState) => state.getArticle);
+    const { loading, error, articles }: ArticleStateProps = StateArticles;
 
     return (
         <div className="container">
             <h3 className="text-success mt-3">Articles</h3>
             <hr />
-            {posts && posts.map(post => <ArticleItemScreen key={post.name } post={post} />)}
+            {articles && articles.map((article: any) => <ArticleItemScreen key={article._id} article={article} reactions={article.reactions.likes} />)}
         </div>
     )
 }

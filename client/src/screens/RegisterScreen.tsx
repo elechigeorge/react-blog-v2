@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-// import { register } from '../actions/UserAction';
-
+import { register } from '../actions/user';
+import api from "../utility/api";
+import { RootState } from '../store';
 
 
 const RegisterScreen = () => {
-    const [username, setUsername] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [occupation, setOccupation] = useState('')
     const [uploading, setUploading] = useState(false);
     const [images, setImages] = useState('');
     const [message, setMessage] = useState(null)
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
 
-    // const userRegister = useSelector((state) => state.userRegister)
-    // const { loading, error, userInfo } = userRegister
+    const userRegister:any = useSelector((state: RootState) => state.userRegister)
+    const { loading, error, userInfo } = userRegister
 
 
     const submitHandler = (e: any) => {
         e.preventDefault()
 
-        // dispatch(register(username, email, password))
-
+        dispatch(register(images, name, email, password, occupation))
     }
 
-    // if (userInfo) {
-    //     return <Redirect to="/verify" />
-    // }
+    useEffect(() => {
+        if (userInfo){
+            return navigate("/auth");
+        }
+    },[userInfo]);
 
 
     // PROFILE PICTURE UPLOADING STUFFS
@@ -49,9 +53,9 @@ const RegisterScreen = () => {
                 },
             }
 
-            //     const { data } = await api.post('/upload', formData, config);
+            const { data } = await api.post('/upload', formData, config);
 
-            //    setImages(data);
+            setImages(data);
             setUploading(false);
         } catch (error) {
             console.error(error);
@@ -69,9 +73,9 @@ const RegisterScreen = () => {
         }} >
             <FormContainer>
                 <h1>Register an account</h1>
-                {/* {message && <Message variant='danger'>{message}</Message>}
+                {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
-                {loading && <Loader />} */}
+                {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId='profile_picture_handler'>
                         <Form.Label>Profile Image</Form.Label>
@@ -100,8 +104,8 @@ const RegisterScreen = () => {
                         <Form.Control
                             type='name'
                             placeholder='Enter Your Full Name'
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 
@@ -115,6 +119,8 @@ const RegisterScreen = () => {
                         ></Form.Control>
                     </Form.Group>
 
+                   
+
                     <Form.Group controlId='password'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
@@ -123,6 +129,17 @@ const RegisterScreen = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         ></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId='occupation'>
+                        <Form.Label>Ocuppation</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter your occupation'
+                            value={occupation}
+                            onChange={(e) => setOccupation(e.target.value)}
+                        ></Form.Control>
+                        <Form.Text>you can either be a student or blogger or progessional writter</Form.Text>
                     </Form.Group>
 
                     <div className="d-grid mt-3">

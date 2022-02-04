@@ -11,6 +11,8 @@ import Register from "./routes/register";
 import Login from "./routes/login";
 import Post from './routes/post';
 import Comment from './routes/comment';
+import Reaction from './routes/reaction';
+import Upload from './middleware/upload';
 
 // initialize environment variables
 dotenv.config();
@@ -52,6 +54,9 @@ server.use('/register', Register);
 server.use('/login', Login);
 server.use('/post', Post);
 server.use('/comment', Comment);
+server.use('/reaction', Reaction);
+server.use('/upload', Upload);
+
 
 // serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -66,8 +71,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // server ports and host informations
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5050
 const HOST = undefined
 
 // serve applications server
-server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5000"))
+server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5050"))
