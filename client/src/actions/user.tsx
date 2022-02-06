@@ -37,6 +37,8 @@ export const login = (email: string, password: string) => async (dispatch: any) 
 
         localStorage.setItem("userInfo", JSON.stringify(data));
 
+        document.location.href = "/auth";
+
     } catch (error: any) {
         dispatch({
             type: USER_LOGIN_FAILED,
@@ -98,6 +100,8 @@ export const register =
                 });
 
                 localStorage.setItem("userInfo", JSON.stringify(data));
+
+                document.location.href = "/auth";
             } catch (error: any) {
                 dispatch({
                     type: USER_REGISTER_FAILED,

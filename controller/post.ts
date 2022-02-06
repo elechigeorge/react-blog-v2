@@ -7,7 +7,7 @@ import { Response, Request } from "express";
 const get_articles = async (request: Request, response: Response) => {
     try {
         // grab all articles
-        const Article = await Post.find({}).sort("-1");
+        const Article = await Post.find({}).sort("-1").populate("user").select("-password");
 
         if (!Article) response.status(400).json("Bad Request");
 
@@ -26,7 +26,7 @@ const get_single_article = async (request: Request, response: Response) => {
 
     try {
         // try to get specific article details
-        const Article = await Post.findOne({ _id: objectId });
+        const Article = await Post.findOne({ _id: objectId }).populate("user").select("-password");
 
         // check for any errors
         if (!Article) {

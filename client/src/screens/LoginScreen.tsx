@@ -35,7 +35,7 @@ const LoginScreen = () => {
             if (userInfo){
                 return navigate("/auth");
             }
-        },[userInfo]);
+        },[userInfo, dispatch, login]);
 
 
     return (

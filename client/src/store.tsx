@@ -5,7 +5,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // import reducers 
 import { userRegisterReducer } from "./reducers/user";
 import { userLoginReducer } from "./reducers/user";
-import { createArticleReducer, getArticleReducer, getSingleArticleReducer } from "./reducers/post"
+import { createArticleReducer, getArticleReducer, getSingleArticleReducer } from "./reducers/post";
+import { createCommentReducer, getCommentReducer } from "./reducers/comment";
+import { createLikeReducer, getLikeReducer } from "./reducers/reaction";
+
 
 const reducer = combineReducers({
   
@@ -17,6 +20,14 @@ const reducer = combineReducers({
   getArticle: getArticleReducer,
   getSingleArticle: getSingleArticleReducer,
   newArticle: createArticleReducer,
+
+  // comment reducers
+  getComment: getCommentReducer,
+  createComment: createCommentReducer,
+
+  // reaction reducers
+  getReaction: getLikeReducer,
+  createReaction: createLikeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

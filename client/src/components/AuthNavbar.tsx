@@ -1,8 +1,29 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Nav, Button } from "react-bootstrap";
 import { Outlet } from 'react-router-dom';
+import { logout } from "../actions/user";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from '../store';
+import { useNavigate } from "react-router-dom";
 
 const AuthNavbar = () => {
+
+  const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+
+  const userLogin:any = useSelector((state: RootState) => state.userLogin)
+  const { loading, error, userInfo } = userLogin;
+
+  const logoutUser = () => dispatch(logout())
+
+  useEffect(() => {
+      if (!userInfo){
+          return navigate("/");
+      }
+  },[userInfo]);
+
+
   return (
     <Fragment>
       <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,7 +41,7 @@ const AuthNavbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="create">write an article</a>
+                <a className="nav-link" href="auth/article/create">write an article</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" target="_blank" rel="noreferrer" href="https://github.com/elechigeorge">github</a>
@@ -30,8 +51,8 @@ const AuthNavbar = () => {
               </li>
              
             </ul>
-            <li className="nav-item d-flex navbar-nav">
-                <a className="nav-link" href="login">Logout</a>
+            <li className="nav-item d-flex navbar-nav" onClick={logoutUser}>
+                <a className="nav-link" href="/">Logout</a>
               </li>
           </div>
         </div>

@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import AuthNavbar from './components/AuthNavbar';
 import ArticleScreen from './screens/ArticleScreen';
 import ReaderScreen from './screens/ReaderScreen';
+import CreateArticleScreen from "./screens/CreateArticleScreen";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/auth" element={<AuthNavbar />}>
           <Route index element={<ArticleScreen />} />
           <Route path="article/:id" element={<ReaderScreen />} />
+          <Route path="article/create" element={<CreateArticleScreen />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

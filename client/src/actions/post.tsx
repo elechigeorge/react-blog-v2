@@ -66,6 +66,7 @@ export const getArticle =
                     type: GET_ARTICLE_REQUEST,
                 });
 
+
                 const config = {
                     headers: {
                         "Content-Type": "application/json",
