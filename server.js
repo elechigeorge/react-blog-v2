@@ -36,6 +36,12 @@ server.use((request, response, next) => {
     }
     next();
 });
+// code to be removed 
+server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
+server.get('*', (_, res, next) => {
+    res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
+    next();
+});
 // database connection 
 mongoose_1.default
     .connect(process.env.MONGOURI || "")
@@ -59,6 +65,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 // server ports and host informations
 const PORT = process.env.PORT || 5050;
-const HOST = undefined;
+const HOST = "https://bloggingsystemng.herokuapp.com";
 // serve applications server
 server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5050"));
