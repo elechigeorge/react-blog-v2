@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "cd client && yarn install && yarn build",
-    "postinstall": "tsc"
+    "postinstall": "tsc --build ./tsconfig.json && cd client && tsc --build tsconfig.json"
   },
   "keywords": [],
   "author": "ELECHI",

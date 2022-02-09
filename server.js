@@ -36,6 +36,7 @@ server.use((request, response, next) => {
     }
     next();
 });
+server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
 // database connection 
 mongoose_1.default
     .connect(process.env.MONGOURI || "")
@@ -48,6 +49,10 @@ server.use('/post', post_1.default);
 server.use('/comment', comment_1.default);
 server.use('/reaction', reaction_1.default);
 server.use('/upload', upload_1.default);
+server.get('/*', (_, res, next) => {
+    res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
+    next();
+});
 // serve static assets in production
 // if (process.env.NODE_ENV === 'production') {
 //     // set static 
@@ -58,13 +63,7 @@ server.use('/upload', upload_1.default);
 //     })
 // }
 // code to be removed 
-server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
-server.get('*', (_, res, next) => {
-    res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
-    next();
-});
 // server ports and host informations
 const PORT = process.env.PORT || 5050;
-const HOST = "https://bloggingsystemng.herokuapp.com";
 // serve applications server
 server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5050"));
