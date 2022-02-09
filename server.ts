@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import methodOverride from 'method-override';
 import path from 'path';
+const resolve = path.resolve()
 import mongoose from 'mongoose';
 
 // load routes paths
@@ -24,8 +25,16 @@ const server: Application = express();
 server.use(methodOverride("_method"));
 server.use(cors());
 server.use(express.json({ limit: '50mb' }));
-server.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+server.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+server.use(express.static(path.join(__dirname, "./client/build")));
 server.use(express.urlencoded({ extended: true, limit: '50mb', parameterLimit: 1000000 }))
+
+server.get("/*", (_, res: Response, next: NextFunction) => {
+    res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+    
+    next();
+})
+
 server.use((request: Request, response: Response, next: NextFunction) => {
     response.header("Access-Control-Allow-Origin", "*");
     response.header(
@@ -42,7 +51,7 @@ server.use((request: Request, response: Response, next: NextFunction) => {
 
     next();
 });
-server.use(express.static(path.resolve(__dirname, "./client/build")));
+
 
 
 // database connection 
@@ -60,11 +69,7 @@ server.use('/reaction', Reaction);
 server.use('/upload', Upload);
 
 
-server.get('/*', (_, res: Response, next: NextFunction) => {
-    res.sendFile(path.resolve(__dirname, "./client/build", "/index.html"));
 
-    next();
-})
 
 // serve static assets in production
 // if (process.env.NODE_ENV === 'production') {
