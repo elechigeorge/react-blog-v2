@@ -5,7 +5,6 @@ import One from '../images/agric.jpeg'
 import Two from '../images/ict.jpeg'
 import Three from '../images/registry.jpeg'
 import Four from '../images/library.jpeg'
-import Five from '../images/mili.jpeg'
 
 
 const HomeScreen = () => {
@@ -85,7 +84,7 @@ const HomeScreen = () => {
                         <Col>
                             <h3 className='lead mt-3 pb-3 text-light'>WE HERE BY INVITE YOU TO THE RUGIPO STUDENT'S BLOGGING NETWORK, PLEASE ENSURE TO CHECK IN DAILY FOR NEWS UPDATES ON THE HAPPENINGS AROUND COLLEGE, ALSO YOU ARE INVITED TO SHARE GENIUNE UPDATES </h3>
                             <div className="d-grid ">
-                                <Button className="btn-sm btn-success">Learn more</Button>
+                                <Button className="btn-sm btn-success" href="about">Learn more</Button>
                             </div>
                         </Col>
                     </Row>
@@ -111,7 +110,7 @@ const HomeScreen = () => {
                                         written by * <span className='text-success'>Madueke Godswill</span>
                                     </Card.Text>
                                     <div className='d-grid'>
-                                        <Button variant="success">Read Now</Button>
+                                        <Button variant="success" href="login">Read Now</Button>
                                     </div>
 
                                 </Card.Body>
@@ -126,7 +125,7 @@ const HomeScreen = () => {
                                         written by * <span className='text-success'>Gift Honeybell</span>
                                     </Card.Text>
                                     <div className='d-grid'>
-                                        <Button variant="success">Read Now</Button>
+                                        <Button variant="success" href="login">Read Now</Button>
                                     </div>
 
                                 </Card.Body>
@@ -141,7 +140,7 @@ const HomeScreen = () => {
                                         written by * <span className='text-success'>Tony Otonne</span>
                                     </Card.Text>
                                     <div className='d-grid'>
-                                        <Button variant="success">Read Now</Button>
+                                        <Button variant="success" href="login">Read Now</Button>
                                     </div>
 
                                 </Card.Body>
@@ -156,7 +155,7 @@ const HomeScreen = () => {
                                         written by * <span className='text-success'>Godspower Ukaukwu</span>
                                     </Card.Text>
                                     <div className='d-grid'>
-                                        <Button variant="success">Read Now</Button>
+                                        <Button variant="success" href="login">Read Now</Button>
                                     </div>
 
                                 </Card.Body>

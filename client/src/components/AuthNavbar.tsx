@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Nav, Button } from "react-bootstrap";
+import { Nav, Button, Navbar, Container } from "react-bootstrap";
 import { Outlet } from 'react-router-dom';
 import { logout } from "../actions/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,37 +26,21 @@ const AuthNavbar = () => {
 
   return (
     <Fragment>
-      <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <a className="navbar-brand" href="/auth">BLOGGING SYSTEM</a>
-          <Button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </Button>
-
-          <div className="collapse navbar-collapse" id="navbarColor02">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a className="nav-link active" href="/auth">Home
-                  <span className="visually-hidden">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="auth/article/create">write an article</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" target="_blank" rel="noreferrer" href="https://github.com/elechigeorge">github</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" target="_blank" rel="noreferrer" href="https://youtube.com">watch demo</a>
-              </li>
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="/auth">DASHBOARD</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/auth">Welcome {userInfo && userInfo.name}</Nav.Link>
+              <Nav.Link href="auth/article/create">Create new article</Nav.Link>
+              <Nav.Link href="https://github.com/elechigeorge" target="_blank" rel="noreferrer">Github</Nav.Link>
+              <Nav.Link href="/" onClick={logoutUser}>log me out</Nav.Link>
              
-            </ul>
-            <li className="nav-item d-flex navbar-nav" onClick={logoutUser}>
-                <a className="nav-link" href="/">Logout</a>
-              </li>
-          </div>
-        </div>
-      </Nav>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Outlet />
     </Fragment>
   )
