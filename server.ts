@@ -61,7 +61,7 @@ server.use('/upload', Upload);
 
 
 server.get('/*', (_, res: Response, next: NextFunction) => {
-    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "./client/build", "/index.html"));
 
     next();
 })
