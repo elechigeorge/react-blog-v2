@@ -8,7 +8,8 @@
   "main": "server.ts",
   "scripts": {
     "start": "node server.ts",
-    "build": "cd client && yarn install && yarn build"
+    "build": "cd client && yarn install && yarn build",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "ELECHI",
