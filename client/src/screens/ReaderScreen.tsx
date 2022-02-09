@@ -45,7 +45,7 @@ const ReaderScreen = () => {
                     </div>
 
                     <div className="header-content">
-                          <Image src={`http://localhost:5050${article.images}`} alt={article.images} fluid />
+                          <Image src={`https://rugipo-blog.herokuapp.com${article.images}`} alt={article.images} fluid />
                     </div>
 
                     <div className="body-content">
