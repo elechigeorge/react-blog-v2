@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // server ports and host informations
 const PORT = process.env.PORT || 5050
-const HOST = undefined
+const HOST = "https://bloggingsystemng.herokuapp.com/"
 
 // serve applications server
 server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5050"))
