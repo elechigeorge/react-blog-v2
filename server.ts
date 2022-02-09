@@ -31,26 +31,9 @@ server.use(express.urlencoded({ extended: true, limit: '50mb', parameterLimit: 1
 
 server.get("/*", (_, res: Response, next: NextFunction) => {
     res.sendFile(path.join(__dirname, "./client/build", "index.html"));
-    
+
     next();
 })
-
-server.use((request: Request, response: Response, next: NextFunction) => {
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header(
-        "Access-Control-Allow-Headers",
-        "Origin, Accept, Content-Type, Authorization, Content-Length, X-Requested-With"
-    );
-    if (request.method === "OPTIONS") {
-        response.header(
-            "Access-Control-Allow-Methods",
-            "PUT, POST, GET, OPTIONS, DELETE"
-        );
-        return response.status(200).json({});
-    }
-
-    next();
-});
 
 
 
