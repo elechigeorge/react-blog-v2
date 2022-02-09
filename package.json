@@ -5,9 +5,9 @@
     "node": "16.x"
   },
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.ts",
     "build": "cd client && yarn install && yarn build"
   },
   "keywords": [],
