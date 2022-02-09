@@ -1,12 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const PostSchema = new mongoose_1.default.Schema({
+exports.__esModule = true;
+var mongoose_1 = require("mongoose");
+var PostSchema = new mongoose_1["default"].Schema({
     user: {
-        type: mongoose_1.default.Schema.Types.ObjectId,
+        type: mongoose_1["default"].Schema.Types.ObjectId,
         ref: "User"
     },
     images: {
@@ -21,24 +18,24 @@ const PostSchema = new mongoose_1.default.Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        "default": Date.now
     },
     reactions: {
         likes: [
             {
                 user: {
-                    type: mongoose_1.default.Schema.Types.ObjectId
+                    type: mongoose_1["default"].Schema.Types.ObjectId
                 }
             }
         ],
         dislikes: [
             {
                 user: {
-                    type: mongoose_1.default.Schema.Types.ObjectId
+                    type: mongoose_1["default"].Schema.Types.ObjectId
                 }
             }
         ]
     }
 });
-const Post = mongoose_1.default.model("Post", PostSchema);
-exports.default = Post;
+var Post = mongoose_1["default"].model("Post", PostSchema);
+exports["default"] = Post;
