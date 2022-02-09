@@ -25,14 +25,13 @@ server.use(methodOverride("_method"));
 server.use(cors());
 server.use(express.json({ limit: '50mb' }));
 server.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-server.use(express.static(path.join(__dirname, "./client/build")));
 server.use(express.urlencoded({ extended: true, limit: '50mb', parameterLimit: 1000000 }))
 
-server.get("/*", (_, res: Response, next: NextFunction) => {
-    res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+// server.get("/*", (_, res: Response, next: NextFunction) => {
+//     res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 
-    next();
-})
+//     next();
+// })
 
 
 
@@ -51,21 +50,15 @@ server.use('/reaction', Reaction);
 server.use('/upload', Upload);
 
 
-
-
-// serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-//     // set static 
-//     server.use(express.static(path.resolve(__dirname, "./client/build")));
-
-//     server.get('*', (_, res: Response, next: NextFunction) => {
-//         res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-
-//         next();
-//     })
-// }
-
-// code to be removed 
+if (process.env.NODE_ENV === 'production') {
+    // Exprees will serve up production assets
+    server.use(express.static('client/build'));
+  
+    // Express serve up index.html file if it doesn't recognize route
+    server.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
 
 

@@ -1,23 +1,26 @@
 "use strict";
-exports.__esModule = true;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // call core modules
-var path_1 = require("path");
-var express_1 = require("express");
-var multer_1 = require("multer");
+const path_1 = __importDefault(require("path"));
+const express_1 = __importDefault(require("express"));
+const multer_1 = __importDefault(require("multer"));
 // initialize express router
-var router = express_1["default"].Router();
-var storage = multer_1["default"].diskStorage({
-    destination: function (req, file, cb) {
+const router = express_1.default.Router();
+const storage = multer_1.default.diskStorage({
+    destination(req, file, cb) {
         cb(null, 'uploads/');
     },
-    filename: function (req, file, cb) {
-        cb(null, "".concat(file.fieldname, "-").concat(Date.now()).concat(path_1["default"].extname(file.originalname)));
-    }
+    filename(req, file, cb) {
+        cb(null, `${file.fieldname}-${Date.now()}${path_1.default.extname(file.originalname)}`);
+    },
 });
 function checkFileType(file, cb) {
-    var filetypes = /jpg|jpeg|png/;
-    var extname = filetypes.test(path_1["default"].extname(file.originalname).toLowerCase());
-    var mimetype = filetypes.test(file.mimetype);
+    const filetypes = /jpg|jpeg|png/;
+    const extname = filetypes.test(path_1.default.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
     if (extname && mimetype) {
         return cb(null, true);
     }
@@ -25,13 +28,13 @@ function checkFileType(file, cb) {
         cb('Images only!');
     }
 }
-var upload = (0, multer_1["default"])({
-    storage: storage,
+const upload = (0, multer_1.default)({
+    storage,
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
-    }
+    },
 });
-router.post('/', upload.single('images'), function (req, res) {
-    res.send("/".concat(req.file && req.file.path));
+router.post('/', upload.single('images'), (req, res) => {
+    res.send(`/${req.file && req.file.path}`);
 });
-exports["default"] = router;
+exports.default = router;
