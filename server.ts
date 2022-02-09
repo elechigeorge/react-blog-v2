@@ -4,7 +4,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import methodOverride from 'method-override';
 import path from 'path';
-const resolve = path.resolve()
 import mongoose from 'mongoose';
 
 // load routes paths
