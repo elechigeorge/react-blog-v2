@@ -8,8 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "install": "yarn install && cd client && yarn install",
-    "postinstall": "tsc --build ./tsconfig.json && cd client && tsc --build tsconfig.json"
+    "build": "cd client && yarn install && yarn build"
   },
   "keywords": [],
   "author": "ELECHI",
