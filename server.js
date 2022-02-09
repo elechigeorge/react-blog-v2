@@ -36,12 +36,6 @@ server.use((request, response, next) => {
     }
     next();
 });
-// code to be removed 
-server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
-server.get('*', (_, res, next) => {
-    res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
-    next();
-});
 // database connection 
 mongoose_1.default
     .connect(process.env.MONGOURI || "")
@@ -55,14 +49,20 @@ server.use('/comment', comment_1.default);
 server.use('/reaction', reaction_1.default);
 server.use('/upload', upload_1.default);
 // serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-    // set static 
-    server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
-    server.get('*', (_, res, next) => {
-        res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
-        next();
-    });
-}
+// if (process.env.NODE_ENV === 'production') {
+//     // set static 
+//     server.use(express.static(path.resolve(__dirname, "./client/build")));
+//     server.get('*', (_, res: Response, next: NextFunction) => {
+//         res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+//         next();
+//     })
+// }
+// code to be removed 
+server.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/build")));
+server.get('*', (_, res, next) => {
+    res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
+    next();
+});
 // server ports and host informations
 const PORT = process.env.PORT || 5050;
 const HOST = "https://bloggingsystemng.herokuapp.com";

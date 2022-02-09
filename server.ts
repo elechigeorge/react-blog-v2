@@ -43,14 +43,6 @@ server.use((request: Request, response: Response, next: NextFunction) => {
     next();
 });
 
-// code to be removed 
-    server.use(express.static(path.resolve(__dirname, "./client/build")));
-
-    server.get('*', (_, res: Response, next: NextFunction) => {
-        res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-
-        next();
-    })
 
 // database connection 
 mongoose
@@ -68,16 +60,26 @@ server.use('/upload', Upload);
 
 
 // serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-    // set static 
-    server.use(express.static(path.resolve(__dirname, "./client/build")));
+// if (process.env.NODE_ENV === 'production') {
+//     // set static 
+//     server.use(express.static(path.resolve(__dirname, "./client/build")));
 
-    server.get('*', (_, res: Response, next: NextFunction) => {
-        res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+//     server.get('*', (_, res: Response, next: NextFunction) => {
+//         res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 
-        next();
-    })
-}
+//         next();
+//     })
+// }
+
+// code to be removed 
+server.use(express.static(path.resolve(__dirname, "./client/build")));
+
+server.get('*', (_, res: Response, next: NextFunction) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+
+    next();
+})
+
 
 // server ports and host informations
 const PORT = process.env.PORT || 5050
