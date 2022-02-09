@@ -17,14 +17,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigation />}>
+        <Route path="/#/" element={<Navigation />}>
           <Route index element={<HomeScreen />} />
           <Route path="about" element={<AboutScreen />} />
           <Route path="login" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} /> 
         </Route>
 
-        <Route path="/auth" element={<AuthNavbar />}>
+        <Route path="/#/auth" element={<AuthNavbar />}>
           <Route index element={<ArticleScreen />} />
           <Route path="article/:id" element={<ReaderScreen />} />
           <Route path="article/create" element={<CreateArticleScreen />} />
