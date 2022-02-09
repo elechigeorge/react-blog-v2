@@ -42,6 +42,7 @@ server.use((request: Request, response: Response, next: NextFunction) => {
 
     next();
 });
+server.use(express.static(path.resolve(__dirname, "./client/build")));
 
 
 // database connection 
@@ -72,7 +73,6 @@ server.use('/upload', Upload);
 // }
 
 // code to be removed 
-server.use(express.static(path.resolve(__dirname, "./client/build")));
 
 server.get('*', (_, res: Response, next: NextFunction) => {
     res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
@@ -83,7 +83,6 @@ server.get('*', (_, res: Response, next: NextFunction) => {
 
 // server ports and host informations
 const PORT = process.env.PORT || 5050
-const HOST = "https://bloggingsystemng.herokuapp.com"
 
 // serve applications server
 server.listen(PORT, () => console.log("Server Resources are now available on http://localhost:5050"))
