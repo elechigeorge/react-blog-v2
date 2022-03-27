@@ -5,6 +5,10 @@ import One from '../images/agric.jpeg'
 import Two from '../images/ict.jpeg'
 import Three from '../images/registry.jpeg'
 import Four from '../images/library.jpeg'
+import Five from '../images/tlecturet.jpeg';
+import Six from '../images/mili.jpeg';
+import Seven from '../images/fm.jpeg';
+import Eight from '../images/biss.jpeg';
 
 
 const HomeScreen = () => {
@@ -26,7 +30,7 @@ const HomeScreen = () => {
                     />
                     <Carousel.Caption>
                         <h3 className='text-success bg-dark p-2'>Agric Building</h3>
-                        <p>Faculty of Argicultural Tech. Building</p>
+                        <p className='bg-success p-2'>Faculty of Argicultural Tech. Building</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -39,7 +43,7 @@ const HomeScreen = () => {
 
                     <Carousel.Caption>
                         <h3 className='text-success bg-dark p-2'>ICT Building B</h3>
-                        <p>The Information Communication Technology Building</p>
+                        <p className='bg-success p-2'>The Information Communication Technology Building</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -52,7 +56,7 @@ const HomeScreen = () => {
 
                     <Carousel.Caption>
                         <h3 className='text-success bg-dark p-2'>The Office of the Registrar</h3>
-                        <p>
+                        <p className='bg-success p-2'>
                             The Registrar office building
                         </p>
                     </Carousel.Caption>
@@ -68,8 +72,72 @@ const HomeScreen = () => {
 
                     <Carousel.Caption>
                         <h3 className="text-success bg-dark p-2">The Library</h3>
-                        <p>
+                        <p className='bg-success p-2'>
                             The Library Building 
+                        </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Five}
+                        alt="Fourth slide"
+                        style={{ height: '85vh' }}
+                    />
+
+                    <Carousel.Caption>
+                        <h3 className="text-success bg-dark p-2">Twin Lecture Theater</h3>
+                        <p className='bg-success p-2'>
+                            This facility is to provide space of lecture for larger size departments and combined courses 
+                        </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Six}
+                        alt="Fourth slide"
+                        style={{ height: '85vh' }}
+                    />
+
+                    <Carousel.Caption>
+                        <h3 className="text-success bg-dark p-2">The Millennium Lecture Theatre </h3>
+                        <p className='bg-success p-2'>
+                        Millennium Lecture Theatre
+                        </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Seven}
+                        alt="Seventh slide"
+                        style={{ height: '85vh' }}
+                    />
+
+                    <Carousel.Caption>
+                        <h3 className="text-success bg-dark p-2">The FM Building</h3>
+                        <p className='bg-success p-2'>
+                            Rugipo 103.3 FM Building 
+                        </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={Eight}
+                        alt="Seventh slide"
+                        style={{ height: '85vh' }}
+                    />
+
+                    <Carousel.Caption>
+                        <h3 className="text-success bg-dark p-2">Faculty of Business Studies</h3>
+                        <p className='bg-success p-2'>
+                            Faculty of Business Studies
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -82,7 +150,7 @@ const HomeScreen = () => {
                             <h2 className=" lead mt-3 bold text-bold text-success">WELCOME TO RUFUS GIWA POLYTECHNIC STUDENT BLOGGING SYSTEM</h2>
                         </Col>
                         <Col>
-                            <h3 className='lead mt-3 pb-3 text-light'>WE HERE BY INVITE YOU TO THE RUGIPO STUDENT'S BLOGGING NETWORK, PLEASE ENSURE TO CHECK IN DAILY FOR NEWS UPDATES ON THE HAPPENINGS AROUND COLLEGE, ALSO YOU ARE INVITED TO SHARE GENIUNE UPDATES </h3>
+                            <h3 className='lead mt-3 pb-3 text-light'>WE HEREBY INVITE YOU TO THE RUGIPO STUDENT'S BLOGGING NETWORK, PLEASE ENSURE TO CHECK IN DAILY FOR NEWS UPDATES ON THE HAPPENINGS AROUND THE POLYTECHNIC, ALSO YOU ARE INVITED TO SHARE GENUINE UPDATES </h3>
                             <div className="d-grid ">
                                 <Button className="btn-sm btn-success" href="about">Learn more</Button>
                             </div>
@@ -105,7 +173,7 @@ const HomeScreen = () => {
                             <Card style={{ width: '18rem', height: '27rem' }}>
                                 <Card.Img variant="top" src={Four} />
                                 <Card.Body>
-                                    <Card.Title>how to get settle on your first at school: freshers guide</Card.Title>
+                                    <Card.Title>how to get settle on your first visit at school: freshers guide to Polytechnic Library </Card.Title>
                                     <Card.Text>
                                         written by * <span className='text-success'>Madueke Godswill</span>
                                     </Card.Text>
