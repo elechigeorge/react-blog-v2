@@ -14,7 +14,6 @@ const Navigation = () => {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="about">About</Nav.Link>
-              <Nav.Link href="https://github.com/elechigeorge" target="_blank" rel="noreferrer">Github</Nav.Link>
               <Nav.Link href="login" >log in</Nav.Link>
              
             </Nav>
