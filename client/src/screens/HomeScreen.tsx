@@ -160,8 +160,6 @@ const HomeScreen = () => {
             </div>
 
 
-
-
             <div className="mt-5">
 
                 <Container>
@@ -175,7 +173,7 @@ const HomeScreen = () => {
                                 <Card.Body>
                                     <Card.Title>how to get settle on your first visit at school: freshers guide to Polytechnic Library </Card.Title>
                                     <Card.Text>
-                                        written by * <span className='text-success'>Madueke Godswill</span>
+                                        written by * <span className='text-success'>Adeboro Ojo Adebayo </span>
                                     </Card.Text>
                                     <div className='d-grid'>
                                         <Button variant="success" href="login">Read Now</Button>
@@ -190,7 +188,7 @@ const HomeScreen = () => {
                                 <Card.Body>
                                     <Card.Title>how to find best tutorial classes on campus: freshers guide</Card.Title>
                                     <Card.Text>
-                                        written by * <span className='text-success'>Gift Honeybell</span>
+                                        written by * <span className='text-success'>Adesida Sunday Ojo</span>
                                     </Card.Text>
                                     <div className='d-grid'>
                                         <Button variant="success" href="login">Read Now</Button>
@@ -205,7 +203,7 @@ const HomeScreen = () => {
                                 <Card.Body>
                                     <Card.Title>how to find housing and accomodation on campus</Card.Title>
                                     <Card.Text>
-                                        written by * <span className='text-success'>Tony Otonne</span>
+                                        written by * <span className='text-success'>Adelusi Damilola </span>
                                     </Card.Text>
                                     <div className='d-grid'>
                                         <Button variant="success" href="login">Read Now</Button>
@@ -220,7 +218,7 @@ const HomeScreen = () => {
                                 <Card.Body>
                                     <Card.Title>cs50 lecture: freshers guide to com. science</Card.Title>
                                     <Card.Text>
-                                        written by * <span className='text-success'>Godspower Ukaukwu</span>
+                                        written by * <span className='text-success'>Adeboro Ojo Adebayo </span>
                                     </Card.Text>
                                     <div className='d-grid'>
                                         <Button variant="success" href="login">Read Now</Button>
